@@ -28,3 +28,8 @@ use the editor.
   own key and store it in Secrets.
 - **Secrets.** Lovable manages them. Do not put secret values in the repo.
 <!-- LOVABLE:END -->
+
+## Project rules
+
+- All colors, fonts, gradients and shadows are design tokens in `src/styles.css` (oklch on the shadcn variables); components use semantic utilities (`bg-primary`, `text-ink`, `shadow-soft`) and never hardcoded color classes. Why: the palette and dark mode stay consistent from one place.
+- Business content (name, contact, projects, services) is data in `src/lib/site.ts`, imported by routes and components. Why: one edit updates every page and the tests read the same source.
