@@ -24,6 +24,12 @@ function whatsappLinksInDocument() {
 }
 
 describe("Contato", () => {
+  it("usa o número real de WhatsApp nos links", () => {
+    expect(SITE.whatsapp).toBe("5562994111432");
+    expect(SITE.whatsappDisplay).toBe("(62) 99411-1432");
+    expect(whatsappLink("Oi")).toBe("https://wa.me/5562994111432?text=Oi");
+  });
+
   it("monta o link do WhatsApp com o número e a mensagem do site", () => {
     expect(whatsappLink("Oi")).toBe(`https://wa.me/${SITE.whatsapp}?text=Oi`);
     expect(whatsappLink("Quero orçamento")).toContain("text=Quero%20or%C3%A7amento");

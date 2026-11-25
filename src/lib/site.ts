@@ -15,11 +15,8 @@ export const SITE = {
   email: "contato@goiaspaisagismo.com.br",
   instagram: "goiaspaisagismo",
   hours: "Segunda a sábado, das 7h às 18h",
-  /**
-   * Placeholder — troque pelo número real do WhatsApp (DDI + DDD + número).
-   */
-  whatsapp: "5562900000000",
-  whatsappDisplay: "(62) 90000-0000",
+  whatsapp: "5562994111432",
+  whatsappDisplay: "(62) 99411-1432",
 } as const;
 
 export function whatsappLink(message?: string): string {
