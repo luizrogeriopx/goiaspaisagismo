@@ -4,7 +4,7 @@
  */
 
 export const SITE = {
-  name: "Goiás Paisagismo",
+  name: "Goiás Paisagismo e Jardinagem",
   wordmark: "Goiás",
   wordmarkSub: "Paisagismo",
   tagline: "Jardinagem, paisagismo e manutenção de jardins em Goiânia e região",
@@ -14,9 +14,10 @@ export const SITE = {
   since: 2009,
   email: "contato@goiaspaisagismo.com.br",
   instagram: "goiaspaisagismo",
-  hours: "Segunda a sábado, das 7h às 18h",
+  hours: "Seg a Sex: 8h às 17h | Sábado: 8h às 12h",
   whatsapp: "5562994111432",
-  whatsappDisplay: "(62) 99411-1432",
+  whatsappDisplay: "(62) 9 9411-1432",
+  address: "Av. T-63, 1639, Jardim América, Goiânia - GO",
 } as const;
 
 export function whatsappLink(message?: string): string {
@@ -231,16 +232,60 @@ export type Service = {
   slug: string;
   title: string;
   summary: string;
+  image: string;
   includes: string[];
   bestFor: string;
 };
 
 export const SERVICES: Service[] = [
   {
-    slug: "projeto-de-paisagismo",
-    title: "Projeto de paisagismo",
+    slug: "jardinagem",
+    title: "Jardinagem",
     summary:
-      "Leitura do espaço, planta com as espécies definidas e lista de plantas com quantidade e preço.",
+      "Cuidamos do seu jardim com técnica e dedicação, garantindo plantas saudáveis, bonitas e sempre bem cuidadas.",
+    image: "/images/jardinagem.jpg",
+    includes: [
+      "Corte de grama e acabamento",
+      "Poda de limpeza e formação",
+      "Adubação e controle de pragas",
+      "Limpeza e recolhimento de resíduos",
+    ],
+    bestFor: "Quem quer jardim sempre bonito sem precisar pensar nisso.",
+  },
+  {
+    slug: "poda",
+    title: "Poda",
+    summary:
+      "Poda técnica que valoriza a estética, fortalece as plantas e mantém seu jardim organizado e seguro.",
+    image: "/images/poda.jpg",
+    includes: [
+      "Poda de formação e de limpeza",
+      "Poda de árvores e arbustos",
+      "Retirada de galhos secos",
+      "Acabamento e limpeza do local",
+    ],
+    bestFor: "Quem quer plantas saudáveis e jardim com visual profissional.",
+  },
+  {
+    slug: "plantio",
+    title: "Plantio",
+    summary:
+      "Escolha correta das plantas e plantio profissional para um crescimento forte, equilibrado e duradouro.",
+    image: "/images/plantio.jpg",
+    includes: [
+      "Seleção das espécies ideais",
+      "Preparo e correção do solo",
+      "Plantio com cobertura morta",
+      "Orientação sobre regas iniciais",
+    ],
+    bestFor: "Quem vai iniciar um jardim ou renovar canteiros.",
+  },
+  {
+    slug: "paisagismo",
+    title: "Paisagismo",
+    summary:
+      "Projetos que transformam espaços em ambientes harmoniosos e cheios de vida.",
+    image: "/images/paisagismo.jpg",
     includes: [
       "Visita técnica e medição do espaço",
       "Plantas por camada: forração, média e alta",
@@ -250,69 +295,32 @@ export const SERVICES: Service[] = [
     bestFor: "Quem vai construir, reformar ou quer ver o jardim antes de comprar planta.",
   },
   {
-    slug: "implantacao-de-jardim",
-    title: "Implantação de jardim",
+    slug: "manutencao",
+    title: "Manutenção",
     summary:
-      "Preparo do solo, compra das mudas, plantio e limpeza. Você entra no jardim pronto.",
+      "Manutenção completa para preservar a beleza do seu jardim o ano todo, sem preocupações.",
+    image: "/images/manutencao.jpg",
     includes: [
-      "Correção e adubação do solo",
-      "Compra e entrega das mudas",
-      "Plantio, cobertura morta e limpeza",
-      "Teste de irrigação no dia da entrega",
-    ],
-    bestFor: "Quem já tem o projeto, ou confia na nossa escolha de espécies.",
-  },
-  {
-    slug: "manutencao-e-poda",
-    title: "Manutenção e poda",
-    summary:
-      "Visitas programadas para cortar, adubar, trocar o que morreu e deixar o jardim apresentável.",
-    includes: [
-      "Poda de formação e de limpeza",
-      "Corte de grama e acabamento",
-      "Adubação e controle de pragas",
+      "Visitas programadas (semanal, quinzenal ou mensal)",
+      "Poda, adubação e controle de pragas",
       "Troca de muda que não pegou",
+      "Relatório de cada visita",
     ],
-    bestFor: "Quem quer jardim sempre bonito sem precisar pensar nisso.",
+    bestFor: "Quem viaja ou não tem tempo para cuidar do jardim.",
   },
   {
-    slug: "muros-verdes",
-    title: "Muros verdes e jardins verticais",
+    slug: "limpeza",
+    title: "Limpeza",
     summary:
-      "Painel de folhagens com estrutura, irrigação e drenagem próprias, para dentro ou para fora.",
+      "Limpeza eficiente de áreas verdes, deixando o espaço renovado, organizado e agradável.",
+    image: "/images/limpeza.jpg",
     includes: [
-      "Estrutura e painel modular",
-      "Irrigação e fertirrigação automáticas",
-      "Seleção de espécies por luz",
-      "Contrato de manutenção do painel",
+      "Remoção de ervas daninhas",
+      "Recolhimento de folhas e galhos",
+      "Limpeza de canteiros e bordas",
+      "Descarte correto de resíduos",
     ],
-    bestFor: "Empenas frias, halls, varandas e fachadas sem canteiro.",
-  },
-  {
-    slug: "irrigacao",
-    title: "Irrigação automática",
-    summary:
-      "Setores por tipo de planta, programador e aspersores ou gotejadores ajustados para o seu sol.",
-    includes: [
-      "Divisão por setores de sombra e sol",
-      "Programador com horário por dia",
-      "Gotejamento em canteiros e vasos",
-      "Assistência e reparo de vazamentos",
-    ],
-    bestFor: "Quem viaja, esquece de regar ou gasta água demais.",
-  },
-  {
-    slug: "horta-e-temperos",
-    title: "Horta e temperos",
-    summary:
-      "Canteiros ou vasos de comestíveis na altura da mão, com calendário de plantio da nossa região.",
-    includes: [
-      "Canteiro suspenso ou vasos modulares",
-      "Mudas de temperos e folhas",
-      "Substrato próprio para horta",
-      "Calendário de plantio de Goiânia",
-    ],
-    bestFor: "Cozinha de casa, restaurante e varanda com sol.",
+    bestFor: "Jardins abandonados ou que precisam de reforma rápida.",
   },
 ];
 
@@ -342,28 +350,136 @@ export const PROCESS_STEPS = [
 export const TESTIMONIALS = [
   {
     quote:
-      "Pedi orçamento para três lugares e a Goiás foi a única que subiu no muro para ver a luz. O jardim da frente virou o que a casa tinha de melhor.",
-    name: "Camila R.",
-    where: "Serrinha",
+      "Excelente serviço! Meu jardim ficou lindo e muito bem cuidado. Profissionais pontuais, caprichosos e atenciosos. Recomendo com certeza.",
+    name: "Fernanda Reis",
+    where: "Goiânia - GO",
+    avatar: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&q=80",
   },
   {
     quote:
-      "Contratei a manutenção por um ano. Numa falta nossa o jardim continuou no ponto, e eles avisaram antes de trocar qualquer muda.",
-    name: "Eduardo M.",
-    where: "Alphaville",
+      "Superou minhas expectativas. O paisagismo transformou completamente o espaço e a manutenção mantém tudo sempre impecável.",
+    name: "Marcos Torres",
+    where: "Ap. de Goiânia - GO",
+    avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&q=80",
   },
   {
     quote:
-      "A varanda do apartamento tinha 12 m² e virou a horta da casa. Manjericão, alecrim e coentro o ano todo, sem molhar o chão.",
-    name: "Juliana T.",
-    where: "Nova Suíça",
+      "Desde o primeiro atendimento até a finalização do serviço, tudo foi perfeito. Meu jardim nunca esteve tão bonito e saudável.",
+    name: "Ana Luíza",
+    where: "Goiânia - GO",
+    avatar: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=100&q=80",
+  },
+  {
+    quote:
+      "Empresa séria e comprometida. Dá para perceber o cuidado e o conhecimento em cada detalhe do trabalho. Fiquei muito satisfeito.",
+    name: "José Carlos",
+    where: "Goiânia - GO",
+    avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&q=80",
   },
 ];
 
 export const STATS = [
-  { value: "17", label: "anos de jardim em Goiânia" },
-  { value: "320", label: "jardins implantados" },
-  { value: "48h", label: "para responder um orçamento" },
+  { value: "+3.000", label: "Projetos de paisagismo residencial e comercial" },
+  { value: "+10 Anos", label: "de experiência em jardinagem, poda, plantio, manutenção e revitalização" },
+];
+
+export const BENEFITS = [
+  {
+    icon: "🌿",
+    title: "Profissionalismo e Experiência",
+    text: "Equipe capacitada, com conhecimento técnico e cuidado em cada detalhe do serviço.",
+  },
+  {
+    icon: "🌱",
+    title: "Atendimento Personalizado",
+    text: "Cada projeto é único e pensado de acordo com suas necessidades e estilo do espaço.",
+  },
+  {
+    icon: "✂️",
+    title: "Qualidade nos Serviços",
+    text: "Trabalhamos com técnicas corretas e materiais de qualidade para resultados duradouros.",
+  },
+  {
+    icon: "🌳",
+    title: "Valorização do Seu Espaço",
+    text: "Jardins bem cuidados aumentam a beleza, o conforto e o valor do seu imóvel.",
+  },
+  {
+    icon: "🔧",
+    title: "Manutenção Completa",
+    text: "Cuidamos de tudo para que seu jardim esteja sempre bonito, saudável e organizado.",
+  },
+  {
+    icon: "🤝",
+    title: "Compromisso e Confiança",
+    text: "Cumprimos prazos, respeitamos seu espaço e entregamos exatamente o que prometemos.",
+  },
+];
+
+export const ABOUT = {
+  image: "/images/foto-sobre.jpg",
+  paragraphs: [
+    "A <strong>Goiás Paisagismo e Jardinagem</strong> une técnica, criatividade e amor pela natureza para criar ambientes verdes que encantam e valorizam cada detalhe do seu imóvel.",
+    "Mais do que plantar e cuidar, nós <strong>planejamos experiências.</strong> Cada projeto é pensado de forma personalizada, respeitando o estilo do cliente, as características do espaço e o equilíbrio natural das plantas. O resultado são jardins vivos, saudáveis e cheios de personalidade.",
+    "Contamos com uma equipe especializada, materiais de qualidade e um <strong>compromisso constante com a excelência.</strong> Do projeto à manutenção, cuidamos de tudo para que você desfrute de um ambiente sempre bonito, organizado e acolhedor.",
+    "Invista em qualidade de vida, valorização do seu patrimônio e contato diário com a natureza. Confie em quem entende de paisagismo e jardinagem. <strong>Goiás Paisagismo e Jardinagem</strong>, seu espaço merece esse cuidado.",
+  ],
+};
+
+export const MISSION_IMAGES = [
+  { src: "/images/missao1.jpg", alt: "Jardim externo" },
+  { src: "/images/missao2.jfif", alt: "Jardim externo" },
+  { src: "/images/missao3.jfif", alt: "Jardim externo" },
+  { src: "/images/missao4.jfif", alt: "Jardim externo" },
+  { src: "/images/missao5.jfif", alt: "Jardim externo" },
+];
+
+export type FaqItem = {
+  question: string;
+  answer: string;
+  cta?: { label: string; href: string };
+};
+
+export const FAQ: FaqItem[] = [
+  {
+    question: "Quais serviços vocês oferecem?",
+    answer:
+      "Oferecemos jardinagem, paisagismo, plantio, poda, manutenção, limpeza de áreas verdes e revitalização de jardins.",
+  },
+  {
+    question: "Vocês atendem residências e empresas?",
+    answer:
+      "Sim, atendemos residências, condomínios, empresas e áreas comerciais, sempre com soluções personalizadas.",
+  },
+  {
+    question: "Vocês fazem manutenção periódica?",
+    answer:
+      "Sim. Trabalhamos com planos de manutenção semanal, quinzenal ou mensal, conforme a necessidade do cliente.",
+  },
+  {
+    question: "O paisagismo é feito sob medida?",
+    answer:
+      "Sim. Cada projeto é desenvolvido de forma personalizada, respeitando o espaço, o estilo do cliente e as condições do ambiente.",
+  },
+  {
+    question: "Vocês fornecem as plantas e materiais?",
+    answer:
+      "Sim. Fornecemos plantas, insumos e materiais de qualidade, garantindo um serviço completo e prático para o cliente.",
+  },
+  {
+    question: "É necessário contrato para os serviços?",
+    answer:
+      "Para manutenções recorrentes, recomendamos contrato. Para serviços pontuais, o atendimento pode ser feito sem contrato.",
+  },
+  {
+    question: "Como posso solicitar um orçamento?",
+    answer:
+      "Você pode entrar em contato pelo WhatsApp. Retornamos rapidamente para agendar uma visita técnica. Basta clicar no botão abaixo!",
+    cta: {
+      label: "Solicitar pelo WhatsApp",
+      href: "https://wa.me/556294111432?text=Olá%2C%20gostaria%20de%20solicitar%20um%20orçamento.",
+    },
+  },
 ];
 
 export const PLANTS_STRIP = [

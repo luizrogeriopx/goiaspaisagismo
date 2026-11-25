@@ -1,96 +1,103 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowRight, Quote } from "lucide-react";
+import { createFileRoute } from "@tanstack/react-router";
+import { MapPin, Phone, Clock, MessageCircle } from "lucide-react";
 
-import { ProjectCard } from "@/components/project-card";
+import { Faq } from "@/components/faq";
 import { Reveal } from "@/components/reveal";
 import { SectionHeading } from "@/components/section-heading";
-import { ServiceIcon } from "@/components/service-icon";
 import { WhatsAppButton } from "@/components/whatsapp-button";
-import { Button } from "@/components/ui/button";
 import {
+  ABOUT,
+  BENEFITS,
+  FAQ,
+  MISSION_IMAGES,
   PLANTS_STRIP,
-  PROCESS_STEPS,
-  PROJECTS,
   SERVICES,
   SITE,
   STATS,
   TESTIMONIALS,
 } from "@/lib/site";
 
-export const Route = createFileRoute("/")({
+export const Route = createFileRoute("/")(({
   head: () => ({
     meta: [
-      { title: "Goiás Paisagismo — jardins que envelhecem bem" },
+      { title: "Goiás Paisagismo e Jardinagem — Goiânia" },
       {
         name: "description",
         content:
-          "Veja os jardins que a Goiás Paisagismo implantou em Goiânia: residenciais, comerciais, muros verdes e pequenos espaços. Orçamento pelo WhatsApp.",
+          "Jardinagem e paisagismo em Goiânia. Projetos personalizados, manutenção de jardins, poda e limpeza para residências e empresas. Orçamento pelo WhatsApp.",
       },
-      { property: "og:title", content: "Goiás Paisagismo — jardins que envelhecem bem" },
+      { property: "og:title", content: "Goiás Paisagismo e Jardinagem" },
       {
         property: "og:description",
         content:
-          "Portfólio de jardins residenciais e comerciais em Goiânia, com projeto, implantação e manutenção.",
+          "Paisagismo residencial e comercial. Jardinagem, poda, plantio, manutenção e revitalização de áreas verdes.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
   component: Index,
-});
+}));
 
 function Index() {
-  const featured = PROJECTS.slice(0, 3);
-
   return (
     <main>
-      <section className="relative isolate overflow-hidden">
+      {/* ===== HERO ===== */}
+      <section id="inicio" className="relative isolate overflow-hidden">
         <img
-          src="/images/hero-jardim.jpg"
-          alt="Jardim residencial com grama, canteiros em camadas e caminho de pedra no fim de tarde"
+          src="/images/paisagismo.jpg"
+          alt="Jardim paisagístico com vegetação exuberante"
           fetchPriority="high"
           className="absolute inset-0 h-full w-full object-cover"
         />
-        <div className="surface-canopy absolute inset-0" />
+        <div className="absolute inset-0 bg-[linear-gradient(135deg,rgba(45,106,79,0.90),rgba(45,106,79,0.70))]" />
 
-        <div className="relative mx-auto flex min-h-[86vh] w-full max-w-6xl flex-col justify-end px-5 pb-14 pt-36 sm:px-8">
-          <p className="eyebrow text-moss">
-            {SITE.city} · desde {SITE.since}
-          </p>
-          <h1 className="mt-5 max-w-3xl text-[2.75rem] leading-[1.03] text-cream sm:text-6xl md:text-[4.5rem]">
-            Jardins que
-            <span className="italic text-moss"> envelhecem bem.</span>
-          </h1>
-          <p className="mt-6 max-w-xl text-[1.06rem] leading-relaxed text-cream/75">
-            Projeto, implantação e manutenção de jardins em {SITE.region}. A gente escolhe a planta
-            certa para a luz que o seu espaço tem — e volta para cuidar dela.
-          </p>
+        <div className="relative mx-auto flex min-h-[100vh] w-full max-w-6xl flex-col items-start justify-center gap-0 px-5 pb-16 pt-28 sm:px-8 lg:grid lg:grid-cols-2 lg:items-center lg:gap-16">
+          {/* Left — text */}
+          <div>
+            <h1 className="text-[2.6rem] font-bold leading-[1.1] text-white sm:text-5xl md:text-6xl">
+              Paisagismo e jardinagem que valorizam seu espaço e conectam você à natureza.
+            </h1>
+            <p className="mt-5 max-w-xl text-[1.1rem] leading-relaxed text-white/85">
+              Jardinagem, poda, plantio, manutenção e revitalização de áreas verdes. Mais
+              verde, mais vida, mais bem-estar.
+            </p>
 
-          <div className="mt-9 flex flex-wrap items-center gap-3">
-            <WhatsAppButton
-              label="Pedir orçamento"
-              size="xl"
-              message={`Olá, ${SITE.name}! Vi o site e quero um orçamento para o meu jardim.`}
-            />
-            <Button asChild variant="outlineCream" size="xl" className="rounded-full">
-              <Link to="/projetos">
-                Ver os projetos
-                <ArrowRight />
-              </Link>
-            </Button>
+            <div className="mt-8 flex flex-wrap gap-3">
+              <WhatsAppButton
+                label="Falar no WhatsApp"
+                size="xl"
+                message={`Olá, ${SITE.name}! Vi o site e quero um orçamento para o meu jardim.`}
+              />
+            </div>
+
+            {/* Stats */}
+            <dl className="mt-12 flex flex-wrap gap-10 border-t border-white/20 pt-8">
+              {STATS.map((stat) => (
+                <div key={stat.label}>
+                  <dt className="text-[2rem] font-extrabold text-white">{stat.value}</dt>
+                  <dd className="mt-1 max-w-[160px] text-[0.82rem] leading-snug text-white/70">
+                    {stat.label}
+                  </dd>
+                </div>
+              ))}
+            </dl>
           </div>
 
-          <dl className="mt-14 grid gap-6 border-t border-cream/15 pt-7 sm:grid-cols-3">
-            {STATS.map((stat) => (
-              <div key={stat.label}>
-                <dt className="font-display text-4xl text-cream">{stat.value}</dt>
-                <dd className="mt-1 text-[0.9rem] text-cream/60">{stat.label}</dd>
-              </div>
-            ))}
-          </dl>
+          {/* Right — logo circle */}
+          <div className="hidden lg:flex lg:justify-center">
+            <div className="h-[380px] w-[380px] overflow-hidden rounded-full border-[5px] border-white/20 shadow-[0_20px_60px_rgba(45,106,79,0.4)]">
+              <img
+                src="/images/logo-jardinagem.png"
+                alt="Logo Goiás Paisagismo e Jardinagem"
+                className="h-full w-full object-cover"
+              />
+            </div>
+          </div>
         </div>
       </section>
 
+      {/* ===== PLANT STRIP ===== */}
       <div className="overflow-hidden border-b border-border/70 bg-secondary/50 py-3.5">
         <div className="flex w-max animate-marquee gap-10 whitespace-nowrap">
           {[...PLANTS_STRIP, ...PLANTS_STRIP].map((plant, index) => (
@@ -105,103 +112,172 @@ function Index() {
         </div>
       </div>
 
-      <section className="mx-auto w-full max-w-6xl px-5 py-20 sm:px-8 sm:py-28">
-        <div className="flex flex-wrap items-end justify-between gap-6">
+      {/* ===== SOBRE ===== */}
+      <section id="sobre" className="bg-white">
+        <div className="mx-auto w-full max-w-6xl px-5 py-20 sm:px-8 sm:py-28">
           <SectionHeading
-            eyebrow="Portfólio"
-            title="Jardins entregues, um por um."
-            description="Cada projeto abaixo foi implantado por nós, com as espécies que continuam crescendo hoje. Clique para ver o que entrou em cada um."
+            eyebrow="Sobre nós"
+            title="Sobre a Goiás Paisagismo e Jardinagem"
+            description="Conheça a nossa história!"
           />
-          <Button asChild variant="outlineInk" className="rounded-full">
-            <Link to="/projetos">
-              Todos os projetos
-              <ArrowRight />
-            </Link>
-          </Button>
-        </div>
 
-        <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-          {featured.map((project, index) => (
-            <Reveal key={project.slug} delay={index * 90}>
-              <ProjectCard project={project} eager={index === 0} />
-            </Reveal>
-          ))}
+          <div className="mt-14 grid gap-12 lg:grid-cols-2 lg:items-center">
+            {/* Image */}
+            <div className="overflow-hidden rounded-2xl shadow-soft">
+              <img
+                src={ABOUT.image}
+                alt="Goiás Paisagismo e Jardinagem"
+                className="h-full w-full object-cover transition-transform duration-500 hover:scale-105"
+              />
+            </div>
+
+            {/* Text */}
+            <div className="space-y-5">
+              {ABOUT.paragraphs.map((p, i) => (
+                <p
+                  key={i}
+                  className="text-[1.05rem] leading-relaxed text-muted-foreground"
+                  dangerouslySetInnerHTML={{ __html: p }}
+                />
+              ))}
+              <div className="pt-2">
+                <WhatsAppButton
+                  label="Falar no WhatsApp"
+                  message={`Olá, ${SITE.name}! Quero saber mais sobre os serviços.`}
+                />
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
-      <section className="surface-earth border-y border-border/70">
+      {/* ===== MISSÃO / GALERIA ===== */}
+      <section className="bg-[#f0f9f4]">
         <div className="mx-auto w-full max-w-6xl px-5 py-20 sm:px-8 sm:py-28">
           <SectionHeading
-            eyebrow="O que fazemos"
-            title="Do papel ao jardim pronto, e depois dele."
-            description="Seis frentes de trabalho. Você pode contratar uma, duas ou o ciclo inteiro."
+            eyebrow="Nossa missão"
+            title="Nossa missão"
+            description="Criar jardins que acolhem, inspiram e transformam o seu dia a dia."
           />
 
-          <div className="mt-12 grid gap-px overflow-hidden rounded-xl border border-border/70 bg-border/70 sm:grid-cols-2 lg:grid-cols-3">
-            {SERVICES.map((service) => (
-              <div key={service.slug} className="bg-card p-7">
-                <span className="inline-flex h-11 w-11 items-center justify-center rounded-lg bg-secondary text-primary">
-                  <ServiceIcon slug={service.slug} className="h-5 w-5" />
-                </span>
-                <h3 className="mt-5 text-xl">{service.title}</h3>
-                <p className="mt-2.5 text-[0.95rem] leading-relaxed text-muted-foreground">
-                  {service.summary}
-                </p>
+          <div
+            className="mt-12 grid gap-3"
+            style={{
+              gridTemplateColumns: "repeat(4, 1fr)",
+              gridTemplateRows: "repeat(2, 200px)",
+            }}
+          >
+            {MISSION_IMAGES.map((img, i) => (
+              <div
+                key={i}
+                className="overflow-hidden rounded-lg"
+                style={i === 0 ? { gridColumn: "span 2", gridRow: "span 2" } : {}}
+              >
+                <img
+                  src={img.src}
+                  alt={img.alt}
+                  className="h-full w-full object-cover transition-transform duration-300 hover:scale-110"
+                />
               </div>
             ))}
           </div>
+        </div>
+      </section>
 
-          <div className="mt-10">
-            <Button asChild variant="outlineInk" className="rounded-full">
-              <Link to="/servicos">
-                Ver serviços em detalhe
-                <ArrowRight />
-              </Link>
-            </Button>
+      {/* ===== SERVIÇOS ===== */}
+      <section id="servicos" className="bg-[#e9f5ec]">
+        <div className="mx-auto w-full max-w-6xl px-5 py-20 sm:px-8 sm:py-28">
+          <SectionHeading
+            eyebrow="O que fazemos"
+            title="Serviços Oferecidos"
+            description="Atendimentos personalizados para cada objetivo"
+          />
+
+          <div className="mt-12 grid gap-7 sm:grid-cols-2 lg:grid-cols-3">
+            {SERVICES.map((service, index) => (
+              <Reveal key={service.slug} delay={index * 70}>
+                <div className="group overflow-hidden rounded-2xl bg-white shadow-soft transition-all duration-300 hover:-translate-y-1.5 hover:shadow-lift">
+                  <div className="h-[180px] overflow-hidden">
+                    <img
+                      src={service.image}
+                      alt={service.title}
+                      className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-110"
+                    />
+                  </div>
+                  <div className="p-6 text-center">
+                    <h3 className="text-xl text-foreground">{service.title}</h3>
+                    <p className="mt-3 text-[0.93rem] leading-relaxed text-muted-foreground">
+                      {service.summary}
+                    </p>
+                  </div>
+                </div>
+              </Reveal>
+            ))}
           </div>
         </div>
       </section>
 
-      <section className="mx-auto w-full max-w-6xl px-5 py-20 sm:px-8 sm:py-28">
-        <SectionHeading
-          eyebrow="Como trabalhamos"
-          title="Quatro passos, sem surpresa no meio."
-        />
-
-        <ol className="mt-12 grid gap-x-8 gap-y-10 sm:grid-cols-2 lg:grid-cols-4">
-          {PROCESS_STEPS.map((step, index) => (
-            <Reveal key={step.number} delay={index * 80}>
-              <li className="relative">
-                <span className="font-display text-5xl text-moss/45">{step.number}</span>
-                <h3 className="mt-3 text-lg">{step.title}</h3>
-                <p className="mt-2 text-[0.94rem] leading-relaxed text-muted-foreground">
-                  {step.text}
-                </p>
-              </li>
-            </Reveal>
-          ))}
-        </ol>
-      </section>
-
-      <section className="bg-ink">
+      {/* ===== BENEFÍCIOS ===== */}
+      <section
+        id="destaques"
+        className="bg-[linear-gradient(135deg,#2d6a4f,#1b4332)] text-white"
+      >
         <div className="mx-auto w-full max-w-6xl px-5 py-20 sm:px-8 sm:py-28">
           <SectionHeading
-            eyebrow="Quem já contratou"
-            title="O que dizem depois de um ano de jardim."
+            eyebrow="Diferenciais"
+            title="Por Que Escolher a Goiás Paisagismo e Jardinagem?"
+            description="Diferenciais que fazem a diferença no seu tratamento"
             tone="ink"
           />
 
-          <div className="mt-12 grid gap-6 md:grid-cols-3">
-            {TESTIMONIALS.map((testimonial, index) => (
-              <Reveal key={testimonial.name} delay={index * 90}>
-                <figure className="flex h-full flex-col rounded-xl border border-cream/12 bg-cream/[0.04] p-7">
-                  <Quote className="h-6 w-6 text-moss" aria-hidden="true" />
-                  <blockquote className="mt-4 flex-1 text-[0.98rem] leading-relaxed text-cream/80">
-                    “{testimonial.quote}”
+          <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {BENEFITS.map((b, index) => (
+              <Reveal key={b.title} delay={index * 70}>
+                <div className="rounded-2xl border border-white/20 bg-white/10 p-8 text-center backdrop-blur-sm transition-all duration-300 hover:-translate-y-1.5 hover:bg-white/20">
+                  <div className="text-4xl">{b.icon}</div>
+                  <h3 className="mt-4 text-[1.1rem] font-semibold text-white">{b.title}</h3>
+                  <p className="mt-2 text-[0.93rem] leading-relaxed text-white/85">{b.text}</p>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ===== DEPOIMENTOS ===== */}
+      <section id="depoimentos" className="bg-[#e9f5ec]">
+        <div className="mx-auto w-full max-w-6xl px-5 py-20 sm:px-8 sm:py-28">
+          <SectionHeading
+            eyebrow="Quem já contratou"
+            title="O Que Nossos Clientes Falam?"
+            description="Confie em quem entende de paisagismo e jardinagem."
+          />
+
+          <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            {TESTIMONIALS.map((t, index) => (
+              <Reveal key={t.name} delay={index * 80}>
+                <figure className="flex h-full flex-col rounded-2xl bg-white p-7 shadow-soft transition-all duration-300 hover:-translate-y-1.5 hover:shadow-lift">
+                  <div className="flex items-center gap-4">
+                    <div className="h-[50px] w-[50px] shrink-0 overflow-hidden rounded-full">
+                      <img
+                        src={t.avatar}
+                        alt={t.name}
+                        className="h-full w-full object-cover"
+                      />
+                    </div>
+                    <div>
+                      <h4 className="text-[0.95rem] font-semibold text-foreground">
+                        {t.name}
+                      </h4>
+                      <span className="text-[0.8rem] text-muted-foreground">{t.where}</span>
+                    </div>
+                  </div>
+                  <blockquote className="mt-5 flex-1 text-[0.93rem] italic leading-relaxed text-muted-foreground">
+                    "{t.quote}"
                   </blockquote>
-                  <figcaption className="mt-6 border-t border-cream/10 pt-4 text-[0.88rem] text-cream/55">
-                    {testimonial.name} · {testimonial.where}
-                  </figcaption>
+                  <div className="mt-4 text-[0.95rem] tracking-widest text-yellow-400">
+                    ⭐⭐⭐⭐⭐
+                  </div>
                 </figure>
               </Reveal>
             ))}
@@ -209,24 +285,101 @@ function Index() {
         </div>
       </section>
 
-      <section className="mx-auto w-full max-w-6xl px-5 py-20 sm:px-8 sm:py-24">
-        <div className="surface-leaf flex flex-col items-start gap-7 rounded-2xl p-9 shadow-lift sm:flex-row sm:items-center sm:justify-between sm:p-12">
-          <div>
-            <p className="eyebrow text-cream/70">Orçamento</p>
-            <h2 className="mt-3 max-w-lg text-3xl leading-tight text-primary-foreground sm:text-4xl">
-              Mande uma foto do seu espaço no WhatsApp.
-            </h2>
-            <p className="mt-3 max-w-md text-[0.98rem] text-cream/75">
-              Respondemos em até 48h com a leitura do espaço e a lista de plantas.
-            </p>
-          </div>
-          <WhatsAppButton
-            variant="cream"
-            label="Falar agora"
-            size="xl"
-            className="shrink-0"
-            message={`Olá, ${SITE.name}! Quero um orçamento. Segue a foto do meu espaço.`}
+      {/* ===== FAQ ===== */}
+      <section id="faq" className="bg-white">
+        <div className="mx-auto w-full max-w-6xl px-5 py-20 sm:px-8 sm:py-28">
+          <SectionHeading
+            eyebrow="Dúvidas"
+            title="Perguntas Frequentes"
+            description="Tire suas dúvidas sobre paisagismo e jardinagem!"
           />
+          <div className="mt-12">
+            <Faq items={FAQ} />
+          </div>
+        </div>
+      </section>
+
+      {/* ===== CONTATO ===== */}
+      <section id="contato" className="bg-[#e9f5ec]">
+        <div className="mx-auto w-full max-w-6xl px-5 py-20 sm:px-8 sm:py-28">
+          <SectionHeading
+            eyebrow="Fale conosco"
+            title="Solicite um orçamento!"
+            description="Paisagismo residencial e comercial. Jardinagem, poda, plantio, manutenção e revitalização de áreas verdes."
+          />
+
+          <div className="mt-14 grid gap-10 lg:grid-cols-2 lg:items-start">
+            {/* Info */}
+            <div className="space-y-8">
+              <div className="flex items-start gap-5">
+                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-primary/10 text-primary">
+                  <Phone className="h-5 w-5" />
+                </div>
+                <div>
+                  <h4 className="font-semibold text-foreground">Telefone</h4>
+                  <p className="mt-1 text-muted-foreground">{SITE.whatsappDisplay}</p>
+                </div>
+              </div>
+
+              <div className="flex items-start gap-5">
+                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-[#25d366]/10 text-[#25d366]">
+                  <MessageCircle className="h-5 w-5" />
+                </div>
+                <div>
+                  <h4 className="font-semibold text-foreground">WhatsApp</h4>
+                  <p className="mt-1 text-muted-foreground">{SITE.whatsappDisplay}</p>
+                  <div className="mt-3">
+                    <WhatsAppButton
+                      label="Solicitar pelo WhatsApp"
+                      message={`Olá, ${SITE.name}! Gostaria de solicitar um orçamento.`}
+                    />
+                  </div>
+                </div>
+              </div>
+
+              <div className="flex items-start gap-5">
+                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-primary/10 text-primary">
+                  <MapPin className="h-5 w-5" />
+                </div>
+                <div>
+                  <h4 className="font-semibold text-foreground">Endereço</h4>
+                  <p className="mt-1 text-muted-foreground">
+                    Av. T-63, 1639
+                    <br />
+                    Jardim América, Goiânia - GO
+                  </p>
+                </div>
+              </div>
+
+              <div className="flex items-start gap-5">
+                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-primary/10 text-primary">
+                  <Clock className="h-5 w-5" />
+                </div>
+                <div>
+                  <h4 className="font-semibold text-foreground">Horário de Atendimento</h4>
+                  <p className="mt-1 text-muted-foreground">
+                    Seg a Sex: 8h às 17h
+                    <br />
+                    Sábado: 8h às 12h
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* Map */}
+            <div className="overflow-hidden rounded-2xl shadow-soft">
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3821.2502149308!2d-49.274568699999996!3d-16.714362599999998!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x935ef128f58dac6d%3A0x50db4b66b20e35b3!2sAv.%20T-63%2C%201639%20-%20Jardim%20Am%C3%A9rica%2C%20Goi%C3%A2nia%20-%20GO%2C%2074250-320!5e0!3m2!1spt-BR!2sbr!4v1765849528778!5m2!1spt-BR!2sbr"
+                width="100%"
+                height="420"
+                style={{ border: 0 }}
+                allowFullScreen
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                title="Localização Goiás Paisagismo"
+              />
+            </div>
+          </div>
         </div>
       </section>
     </main>
